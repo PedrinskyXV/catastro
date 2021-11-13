@@ -25,13 +25,15 @@ class AccesoController extends BaseController
 
     public function Autentificar()
     {
+        helper('date');
+
         $session = session();
 
         $usuarioModel = new UsuarioModel();
 
         $usuario = $this->request->getVar('usuario');
         $clave = $this->request->getVar('clave');
-
+        
         $consulta = $usuarioModel->obtenerUsuarioFiltradoUsuario($usuario);
         if (!empty($consulta)) {
             $consulta = $consulta[0];
@@ -40,14 +42,19 @@ class AccesoController extends BaseController
 
                 if (password_verify($clave, $contrasena)) {
                     $session_usuario = [
+                        'idUsuario' => $consulta['id_usuario'],
                         'usuario' => $consulta['usuario'],
                         'nombre' => $consulta['nombre'],
                         'apellido' => $consulta['apellido'],
                         'rol' => $consulta['rol_nombre'],
                         'estaLogeado' => true,
                     ];
+                    $date = now();
 
                     $session->set($session_usuario);
+                    $this->createDate = now();
+
+                    $usuarioModel->update($consulta['id_usuario'] , ['ultimo_acceso' => date('Y-m-d H:i:s')], false);
                     return redirect()->to('empresa/agregar');
                 } else {
                     $session->setFlashdata('msg', 'La contraseña es incorrecta.');

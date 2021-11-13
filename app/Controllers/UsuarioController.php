@@ -218,14 +218,14 @@ class UsuarioController extends Controller
     }
 
     public function Modificar()
-    {
+    {        
         if ($_POST) {
 
             $validar = $this->validate([
-                'usuario' => 'required|min_length[5]|max_length[50]|alpha_numeric|is_unique[usuario.usuario]',
+                'usuario' => 'required|min_length[5]|max_length[50]|alpha_numeric',
                 'unombre' => 'required|min_length[3]|max_length[50]|alpha',
                 'uapellido' => 'required|min_length[3]|max_length[50]|alpha',
-                'ucorreo' => 'required|min_length[8]|max_length[80]|valid_email|is_unique[usuario.correo]',
+                'ucorreo' => 'required|min_length[8]|max_length[80]|valid_email',
                 'sRol' => 'required|is_natural_no_zero',
             ],
                 [
@@ -233,8 +233,7 @@ class UsuarioController extends Controller
                         'required' => 'El usuario es requerido.',
                         'min_length' => 'El usuario debe tener como minimo 8 caracteres.',
                         'max_length' => 'El usuario debe tener como maximo 50 caracteres.',
-                        'alpha_numeric' => 'El usuario debe tener solo letras y numeros.',
-                        'is_unique' => 'El usuario ya existe.',
+                        'alpha_numeric' => 'El usuario debe tener solo letras y numeros.',                        
                     ],
                     'unombre' => [
                         'required' => 'El nombre es requerido.',
@@ -252,8 +251,7 @@ class UsuarioController extends Controller
                         'required' => 'El correo es requerido.',
                         'min_length' => 'El correo debe tener como minimo 8 caracteres.',
                         'max_length' => 'El correo debe tener como maximo 80 caracteres.',
-                        'valid_email' => 'El correo es invalido.',
-                        'is_unique' => 'El correo ya existe.',
+                        'valid_email' => 'El correo es invalido.',                        
                     ],
                 ]);
 
@@ -273,16 +271,21 @@ class UsuarioController extends Controller
 
                 $consulta = $usuarioModel->obtenerUsuarioFiltradoId($id);
                 $verificar = $usuarioModel->obtenerUsuarioFiltradoUsuario($nuevoUsuario);
+
                 if (!empty($consulta)) {
 
                     if ($usuarioModel->update($id, $data)) {
                         session()->setFlashdata('alert', [
-                            'msg' => 'Perfil modificado con exito.',
+                            'msg' => 'El usuario modificado con exito.',
                             'icon' => 'success',
                         ]);
 
-                        return $this->response->redirect(site_url('usuario/index'));
+                        return $this->response->redirect(base_url('usuario/index'));
                     } else {
+
+                        var_dump($usuarioModel->update($id, $data));
+                        die();
+
                         if (!empty($verificar)) {
                             session()->setFlashdata('alert', [
                                 'msg' => 'El usuario ya existe.',

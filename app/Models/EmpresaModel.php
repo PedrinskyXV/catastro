@@ -10,12 +10,27 @@ class EmpresaModel extends Model
     protected $primaryKey = 'id_usuario';
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
-    protected $useTimestamps = true;
+    
     protected $allowedFields = [
         'nombre_juridico', 'nombre_comercial',
         'giro_actividad', 'actividad_economica',
         'telefono', 'correo',
         'direccion', 'estado'];
+    
+    protected $useSoftDeletes = true;
+
+    protected $useTimestamps = true;
+    protected $createdField  = 'creado_el';
+    protected $updatedField  = 'editado_el';
+    protected $deletedField  = 'desactivado_el';
+
+    protected $validationRules = [
+        'nombre_juridico' => 'required|alpha_numeric_space|min_length[5]|max_length[150]',
+        'nombre_comercial' => 'required|alpha_numeric_space|min_length[5]|max_length[150]',
+        'correo' => 'required|valid_email|min_length[8]|max_length[100]',
+        'telefono' => 'required|alpha_numeric_space|min_length[8]|max_length[17]',
+        'direccion' => 'required|alpha_numeric_space|min_length[8]|max_length[250]',        
+    ];
 
     public function obtenerEmpresa()
     {
