@@ -52,6 +52,8 @@ if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 
 $routes->get('/', 'AccesoController::Login');
 $routes->post('autentificar', 'AccesoController::Autentificar');
+$routes->get('logout', 'AccesoController::CerrarSesion');
+
 
 $routes->group('SuperAdmin', ['filter' => 'authGuard'], function ($routes) {
     $routes->get('inicio/index', 'InicioController::index');
@@ -90,6 +92,10 @@ $routes->group('SuperAdmin', ['filter' => 'authGuard'], function ($routes) {
     $routes->get('usuario/ver/(:num)', 'UsuarioController::Ver/$1');
     $routes->get('usuario/estado/(:num)', 'UsuarioController::CambiarEstado/$1');
 
+    $routes->get('informes/estadocuenta', 'PDF::Index');
+    $routes->post('informes/informeEstado', 'PDF::informeEstadoCuenta');
+    $routes->get('informes/informeTributoporRubro', 'PDF::informeTributoporRubro');
+
 });
 
 $routes->group('Administador', ['filter' => 'authGuard'], function ($routes) {
@@ -115,6 +121,10 @@ $routes->group('Administador', ['filter' => 'authGuard'], function ($routes) {
     $routes->get('colonia/index', 'ColoniaController::Index');
     $routes->get('colonia/agregar', 'ColoniaController::Agregar');
     $routes->get('colonia/ajaxColonias', 'ColoniaController::ajaxColonias');
+
+    $routes->get('informes/estadocuenta', 'PDF::Index');
+    $routes->post('informes/informeEstado', 'PDF::informeEstadoCuenta');
+    $routes->get('informes/informeTributoporRubro', 'PDF::informeTributoporRubro');
 });
 
 $routes->group('Usuario', ['filter' => 'authGuard'], function ($routes) {
@@ -137,3 +147,16 @@ $routes->group('Usuario', ['filter' => 'authGuard'], function ($routes) {
     $routes->get('colonia/ajaxColonias', 'ColoniaController::ajaxColonias');
 
 });
+
+$routes->get('usuario/perfil', 'UsuarioController::MiPerfil');
+    $routes->get('usuario/index', 'UsuarioController::Index');
+    $routes->get('usuario/agregar', 'UsuarioController::Agregar');
+    $routes->post('usuario/insertar', 'UsuarioController::insertar');
+    $routes->get('usuario/ajaxUsuarios', 'UsuarioController::ajaxUsuarios');
+    $routes->get('usuario/editar/(:num)', 'UsuarioController::Editar/$1');
+    $routes->post('usuario/editarPerfil', 'UsuarioController::EditarPerfil');
+    $routes->post('usuario/modificar', 'UsuarioController::Modificar');
+    $routes->get('usuario/editarClave/(:num)', 'UsuarioController::EditarClave/$1');
+    $routes->post('usuario/CambiarClave', 'UsuarioController::CambiarClave');
+    $routes->get('usuario/ver/(:num)', 'UsuarioController::Ver/$1');
+    $routes->get('usuario/estado/(:num)', 'UsuarioController::CambiarEstado/$1');

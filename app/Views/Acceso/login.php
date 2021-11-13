@@ -26,7 +26,7 @@
                                         <p class="text-center small">Ingresa tu usuario y contraseña para acceder</p>
                                     </div>
 
-                                    <form action="<?=base_url('acceso/autentificar');?>" method="POST"
+                                    <form action="<?=base_url('autentificar');?>" method="POST"
                                         class="row g-3 needs-validation" novalidate>
 
                                         <div class="col-12">

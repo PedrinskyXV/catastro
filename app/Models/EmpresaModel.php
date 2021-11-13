@@ -72,6 +72,7 @@ class EmpresaModel extends Model
         ->select("SUM(montoReportado) as montoReportado, SUM(montoFijo+montoPorcentaje) as TOTAL", false)
         ->where("nombre_comercial", $valor);
         return $builder->get()->getResult("array");
+    }
 
     public function obtenerEmpresaFiltrado($id)
     {

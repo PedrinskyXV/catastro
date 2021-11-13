@@ -55,14 +55,14 @@
       <li class="nav-heading">Reportes</li>      
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="<?php echo base_url('/informes/estadocuenta') ?>">
+        <a class="nav-link collapsed" href="<?php echo base_url($rol . '/informes/estadocuenta') ?>">
           <i class="bi bi-question-circle"></i>
           <span>Estado de cuenta</span>
         </a>
       </li><!-- End Estado de cuenta Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="<?php echo base_url('/informes/informeTributoporRubro') ?>">
+        <a class="nav-link collapsed" href="<?php echo base_url($rol . '/informes/informeTributoporRubro') ?>">
           <i class="bi bi-check2-all"></i>
           <span>Tributo por Rubro</span>
         </a>

@@ -75,7 +75,7 @@ class AccesoController extends BaseController
     public function CerrarSesion()
     {
         session()->destroy();
-        return redirect()->to(base_url('acceso/'));
+        return redirect()->to(base_url('/'));
     }
 
     public function NoAutorizado()
