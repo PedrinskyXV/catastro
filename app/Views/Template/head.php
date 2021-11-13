@@ -28,7 +28,7 @@
     <link href="<?= base_url() ?>/plugins/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>/plugins/quill/quill.snow.css" rel="stylesheet">
     <link href="<?= base_url() ?>/plugins/quill/quill.bubble.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/plugins/simple-datatables/style.css" rel="stylesheet">
+    <!-- <link href="<?= base_url() ?>/plugins/simple-datatables/style.css" rel="stylesheet"> -->
 
     <!-- Template Main CSS File -->
     <link href="<?= base_url() ?>/css/style.css" rel="stylesheet">
@@ -38,7 +38,7 @@
 
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css" /> -->
 
-    <link rel="stylesheet" href="<?= base_url('/vendor/validetta/validetta.min.css');?>">
+    <link rel="stylesheet" href="<?= base_url('/plugins/validetta/validetta.min.css');?>">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@5.0.7/dark/dark.min.css">
 

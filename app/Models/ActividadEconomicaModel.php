@@ -15,10 +15,14 @@ class ActividadEconomicaModel extends Model
         'actividad', 'idRubro',
     ];
 
-    public function obtenerActividadesEconomicas()
+    public function obtenerActividadesEconomicas($id)
     {
         $builder = $this->db->table("actividad_economica")
-        ->select('actividad, idRubro, estado');              
-        return $builder;
+        ->select('actividad_economica.idActividad, actividad_economica.actividad, actividad_economica.idRubro, actividad_economica.estado')
+        ->join('rubro', 'rubro.idRubro = actividad_economica.idRubro')
+        ->where('actividad_economica.idRubro', $id);
+        
+        $data = $builder->get()->getResultArray();
+        return $data;
     }
 }

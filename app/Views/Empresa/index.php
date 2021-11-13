@@ -12,8 +12,17 @@
                 <hr>
             <div class="text-muted">
                 <p><i class="bi bi-info-circle-fill"></i> Al restablecer la contraseña se establece por defecto '<b>alcaldia123</b>'
-                &nbsp;&nbsp;<i class="bi bi-info-circle-fill"></i> Se puede filtrar por los campos 'usuario', 'nombre', 'apellido', 'correo' .</p>
+                &nbsp;&nbsp;<i class="bi bi-info-circle-fill"></i> Se puede filtrar por los campos 'nit', 'dui', 'nombre', 'correo(persona, empresa)', 'telefono(persona, empresa)', 'nombre juridico', 'nombre comercial', 'colonia', 'zona', 'direccion' .</p>
             </div>
+
+            <?php if(session()->get('rol') != "Usuario"):?>
+                <div class="row my-2">
+                <div class="d-grid d-md-block">
+                    <a class="btn btn-primary float-end w-25" href="<?= base_url('/empresa/agregar')?>"><i class="bi bi-plus-circle"></i> Agregar</a>
+                </div>
+            </div>
+            <?php endif;?>
+            
                 <table class="table table-bordered mt-5" id="tbl-empresa-data">
                     <thead class="table-primary">
                         <tr>
@@ -49,14 +58,7 @@ $(document).ready(function() {
         language: {
             url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/es-mx.json'
         },
-        buttons: [{
-                extend: 'copy',
-                className: 'btn btn-secondary',
-                text: '<i class="bi bi-clipboard"></i>',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7]
-                }
-            },
+        buttons: [
             {
                 extend: 'excel',
                 className: 'btn btn-success',
@@ -78,7 +80,7 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         order: [], //init datatable not ordering
-        ajax: "<?php echo base_url('empresa/ajaxEmpresas') ?>",
+        ajax: "<?php echo base_url(session()->get('rol').'/empresa/ajaxEmpresas') ?>",
         columnDefs: [{
             targets: 0,
             orderable: false

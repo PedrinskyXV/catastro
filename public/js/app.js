@@ -18,28 +18,21 @@ function mostrarAlerta(icono, titulo) {
 }
 
 $(function () {
-  console.log("ready!");
 
-  agregarValidaciones();
-
-  $('#clave').keypress(function (e) { 
-    console.log('-> key press');
+  $("form").validetta({
+    realTime: true,
+    bubblePosition: "bottom",
+    bubbleGapTop: 10,
+    bubbleGapLeft: -5,
   });
 
-  function agregarValidaciones() {
-    $("#usuario").attr("data-validetta", "required,minLength[5],maxLength[50]");
-    $("#clave").attr("data-validetta", "required,minLength[8],maxLength[70]");
-    $("#unombre").attr("data-validetta", "required,minLength[5],maxLength[50]");
-    $("#uapellido").attr(
-      "data-validetta",
-      "required,minLength[5],maxLength[50]"
-    );
-    $("#ucorreo").attr(
-      "data-validetta",
-      "required,minLength[8],maxLength[80],email"
-    );
-    $("#sRol").attr("data-validetta", "required,minSelected[1],maxSelected[1]");
+  console.log("ready!");
 
+  //agregarValidaciones();
+  activarMascaras();
+
+  $("#clave").keypress(function (e) {
+    console.log("-> key press");
     const togglePassword = document.querySelector("#togglePassword");
     const password = document.querySelector("#clave");
 
@@ -51,14 +44,118 @@ $(function () {
       // toggle the eye / eye slash icon
       this.classList.toggle("bi-eye");
     });
+  });
+
+  function agregarValidaciones() {
+
+    //#region validetta USUARIO
+    $("#usuario").attr("data-validetta", "required,minLength[5],maxLength[50]");
+    $("#clave").attr("data-validetta", "required,minLength[8],maxLength[70]");
+    $("#usuario_nombre").attr(
+      "data-validetta",
+      "required,minLength[5],maxLength[50]"
+    );
+    $("#usuario_apellido").attr(
+      "data-validetta",
+      "required,minLength[5],maxLength[50]"
+    );
+    $("#usuario_correo").attr(
+      "data-validetta",
+      "required,minLength[8],maxLength[80],email"
+    );
+    $("#sRol").attr("data-validetta", "required,minSelected[1],maxSelected[1]");
+    //#endregion        
+
+    //#region validetta PERSONA
+    $("#nombre_persona").attr(
+      "data-validetta",
+      "required,minLength[8],maxLength[100]"
+    );
+    $("#correo_persona").attr(
+      "data-validetta",
+      "required,minLength[8],maxLength[50],email"
+    );
+    $("#direccion_persona").attr(
+      "data-validetta",
+      "required,minLength[8],maxLength[50]"
+    );
+    $("#dui").attr("data-validetta", "required,minLength[5],maxLength[50]");
+    $("#nit").attr("data-validetta", "required,minLength[5],maxLength[50]");
+    $("#telefono_persona").attr(
+      "data-validetta",
+      "required,minLength[5],maxLength[50]"
+    );
+    $("#sTipoPersona").attr(
+      "data-validetta",
+      "required,minSelected[1],maxSelected[1]"
+    );
+    //#endregion
+    
+    //#region validetta EMPRESA
+    $("#sRubro").attr(
+      "data-validetta",
+      "required,minSelected[1],maxSelected[1]"
+    );
+
+    $("#sActividad").attr(
+      "data-validetta",
+      "required,minSelected[1],maxSelected[1]"
+    );
+
+    $("#nombre_juridico").attr(
+      "data-validetta",
+      "required,minLength[8],maxLength[150]"
+    );
+
+    $("#nombre_comercial").attr(
+      "data-validetta",
+      "required,minLength[8],maxLength[150]"
+    );
+
+    $("#telefono_empresa").attr(
+      "data-validetta",
+      "required,minLength[9],maxLength[17]"
+    );
+
+    $("#correo_empresa").attr(
+      "data-validetta",
+      "required,minLength[8],maxLength[100],email"
+    );
+
+    $("#direccion_empresa").attr(
+      "data-validetta",
+      "required,minLength[8],maxLength[250]"
+    );
+
+    $("#direccion_contacto").attr(
+      "data-validetta",
+      "required,minLength[8],maxLength[250]"
+    );
+
+    $("#sColonia").attr(
+      "data-validetta",
+      "required,minSelected[1],maxSelected[1]"
+    );
+    //#endregion
+
   }
 
-  $("form").validetta({
-    realTime: true,
-    bubblePosition: "bottom",
-    bubbleGapTop: 10,
-    bubbleGapLeft: -5,
-  });
+  function activarMascaras()
+  {
+    $("#dui").inputmask({
+      mask: "99999999-9",
+    });
+    $("#nit").inputmask({
+      mask: "9999-999999-999-9",
+    });
+
+    $('input[type="tel"]').inputmask({
+      mask: "9999-9999",
+    });
+    $(telPersona).inputmask({
+      mask: "9999-9999",
+    });
+  }
 
   $('button[name="btnModificar"], button[name="btnEliminar"]').on(
     "click",

@@ -14,7 +14,17 @@ class PersonaModel extends Model
     protected $allowedFields = [
         'nombre', 'correo', 'direccion',
         'nit', 'dui', 'telefono',
-        'tipo', 'estado',
+        'estado', 'id_tipoP'
+    ];
+
+    protected $validationRules = [    
+        'nombre' => 'required|min_length[8]|max_length[50]|alpha',        
+        'correo' => 'required|min_length[8]|max_length[50]|valid_email',
+        'direccion' => 'required|min_length[8]|max_length[250]',
+        'dui' => 'required|min_length[8]|max_length[10]',
+        'nit' => 'required|min_length[8]|max_length[20]',
+        'telefono' => 'required|min_length[8]|max_length[25]',
+        'id_tipoP' => 'required|is_natural_no_zero',
     ];
 
     public function obtenerPersonaFiltrado($nit)

@@ -1,46 +1,23 @@
-<?=$head?>
-
-<?=$header?>
-<?=$sidebar?>
-
-<main id="main" class="main">
-    <section class="section">
-        <div class="card table-responsive p-5">
-
-        <?php if(session()->get('rol') != "Usuario"):?>
-                <div class="row my-2">
-                <div class="d-grid d-md-block">
-                    <a class="btn btn-primary float-end w-25" href="<?= base_url(session()->get('rol') . '/zona/agregar')?>"><i class="bi bi-plus-circle"></i> Agregar</a>
-                </div>
-            </div>
-            <?php endif;?>
-
-            <table class="table mt-5" id="tbl-zona-data">
+<table class="table mt-5" id="tbl-bitacora-data">
                 <thead class="table-primary">
                     <tr>
                         <th>No.Registro</th>
-                        <th>ID Zona</th>
-                        <th>Zona</th>
-                        <th>Estado</th>
+                        <th>ID Bitacora</th>
+                        <th>Informacion</th>
+                        <th>Fecha</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                 </tbody>
             </table>
-        </div>
-    </section>
-</main>
-
-
-<?=$footer?>
 
 <script>
 var site_url = "<?php echo site_url(); ?>";
 
 $(document).ready(function() {
 
-    var table = $('#tbl-zona-data').DataTable({
+    var table = $('#tbl-bitacora-data').DataTable({
         language: {
             url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/es-mx.json'
         },
@@ -65,7 +42,7 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         order: [], //init datatable not ordering
-        ajax: "<?php echo base_url(session()->get('rol').'/zona/ajaxZonas') ?>",
+        ajax: "<?php echo site_url('SuperAdmin/bitacora/ajaxBitacoras') ?>",
         columnDefs: [{
             targets: 0,
             orderable: false
@@ -74,17 +51,16 @@ $(document).ready(function() {
                 data: 'no'
             },
             {
-                data: 'id_zona'
+                data: 'id_bitacora'
             },
             {
-                data: 'nombre'
+                data: 'info'
             },
             {
-                data: 'estado'
+                data: 'fecha'
             },
             {
-                data: 'action',
-                orderable: false,
+                data: 'usuario',                
 
             },
         ],
