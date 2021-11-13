@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ColoniaModel;
-use App\Models\EmpresaModel;
+use App\Models\ZonaModel;
 use \Hermawan\DataTables\DataTable;
 
 class ColoniaController extends BaseController
@@ -15,7 +15,20 @@ class ColoniaController extends BaseController
         $datos['header'] = view('Template/header');
         $datos['sidebar'] = view('Template/sidebar');
         $datos['footer'] = view('Template/footer');
-        return view('Empresa/agregar', $datos);
+        $zona = new ZonaModel();
+        $datos['zonas'] = $zona->findAll();
+        return view('Colonia/agregar', $datos);
+    }
+    public function Editar()
+    {
+        $datos['titulo'] = ucfirst('agregar colonia');
+        $datos['head'] = view('Template/head', $datos);
+        $datos['header'] = view('Template/header');
+        $datos['sidebar'] = view('Template/sidebar');
+        $datos['footer'] = view('Template/footer');
+        $zona = new ZonaModel();
+        $datos['zonas'] = $zona->findAll();
+        return view('Colonia/editar', $datos);
     }
 
     public function Index()
@@ -26,6 +39,7 @@ class ColoniaController extends BaseController
         $datos['sidebar'] = view('Template/sidebar');
         $datos['footer'] = view('Template/footer');
         
+
         return view('Colonia/index', $datos);
     }
 
