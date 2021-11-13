@@ -54,8 +54,11 @@ class AccesoController extends BaseController
                     $session->set($session_usuario);
                     $this->createDate = now();
 
+                    $group = $consulta['rol_nombre'];
+
                     $usuarioModel->update($consulta['id_usuario'] , ['ultimo_acceso' => date('Y-m-d H:i:s')], false);
-                    return redirect()->to('empresa/agregar');
+
+                    return redirect()->to($group.'/inicio/index');
                 } else {
                     $session->setFlashdata('msg', 'La contraseña es incorrecta.');
                     return redirect()->to('acceso');

@@ -11,12 +11,14 @@ $errores = \Config\Services::validation();
         <div class="row">
             <div class="col-12">
                 <div class="card shadow p-3">
-                    <h1 class="card-title bg-dark text-center text-white fw-bold text-uppercase">Registrar nueva empresa
+                    <h1 class="card-title bg-dark text-center text-white fw-bold text-uppercase">Editar Empresa
                     </h1>
                     <h2 class="card-title bg-primary text-center text-white">DATOS DE LA EMPRESA</h2>
                     <div class="card-body">
-                        <?=var_dump(session()->getFlashdata())?>
-                        <form action="<?=base_url('/empresa/insertar')?>" method="POST">
+                    <?=var_dump(session()->getFlashdata())?>
+                        <form action="<?=base_url('/empresa/modificar')?>" method="POST">
+                            <input type="hidden" name="id_empresa" value="<?=old('id_empresa', $empresas['id_empresa']);?>">
+                            <input type="hidden" name="id_empresa_actividad" value="<?=old('id_empresa_actividad', $empresas['id_empresa_actividad']);?>">
                             <div class="my-3">
                                 <div class="row">
                                     <div class="col">
@@ -27,7 +29,7 @@ $errores = \Config\Services::validation();
                                             </label>
                                             <div class="col-sm-10">
                                                 <select class="form-select" id="sRubro" name="sRubro"
-                                                    value="<?=old('sRubro');?>">
+                                                    value="<?=old('sRubro', $empresas['id_rubro']);?>">
                                                     <option value="" disabled selected>Seleccionar...</option>
                                                     <?php foreach ($rubros as $rubro): ?>
 
@@ -59,7 +61,7 @@ $errores = \Config\Services::validation();
                                                 </span></label>
                                             <div class="col-sm-10">
                                                 <select class="form-select" id="sActividad" name="sActividad"
-                                                    >
+                                                    value="<?= old('sActividad', $empresas['id_actividad'])?>">
                                                     <option value="" disabled selected>Seleccionar...</option>
                                                 </select>
                                                 <?php if ($errores->getError('sActividad')): ?>
@@ -83,7 +85,7 @@ $errores = \Config\Services::validation();
                                                     empresa</span></label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="nombre_juridico"
-                                                    name="nombre_juridico" value="<?=old('nombre_juridico');?>">
+                                                    name="nombre_juridico" value="<?=old('nombre_juridico', $empresas['nombre_juridico']);?>">
 
                                                 <?php if ($errores->getError('nombre_juridico')): ?>
                                                 <div class="muted text-danger">
@@ -100,7 +102,7 @@ $errores = \Config\Services::validation();
                                                     class="badge bg-primary badge-label">Telefono</span></label>
                                             <div class="col-sm-9">
                                                 <input type="tel" class="form-control" id="telefono_empresa"
-                                                    name="telefono_empresa" value="<?=old('telefono_empresa');?>">
+                                                    name="telefono_empresa" value="<?=old('telefono_empresa', $empresas['telefono_empresa']);?>">
                                                     <?php if ($errores->getError('telefono_empresa')): ?>
                                                 <div class="muted text-danger">
                                                     <i class="bi bi-exclamation-diamond-fill"></i>
@@ -122,7 +124,7 @@ $errores = \Config\Services::validation();
                                                     Comercial</span></label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="nombre_comercial"
-                                                    name="nombre_comercial" value="<?=old('nombre_comercial');?>">
+                                                    name="nombre_comercial" value="<?=old('nombre_comercial', $empresas['nombre_comercial']);?>">
                                                     <?php if ($errores->getError('nombre_comercial')): ?>
                                                 <div class="muted text-danger">
                                                     <i class="bi bi-exclamation-diamond-fill"></i>
@@ -139,7 +141,7 @@ $errores = \Config\Services::validation();
                                                     electronico</span></label>
                                             <div class="col-sm-9">
                                                 <input type="email" class="form-control" id="correo_empresa"
-                                                    name="correo_empresa" value="<?=old('correo_empresa');?>">
+                                                    name="correo_empresa" value="<?=old('correo_empresa', $empresas['correo_empresa']);?>">
                                                     <?php if ($errores->getError('correo_empresa')): ?>
                                                 <div class="muted text-danger">
                                                     <i class="bi bi-exclamation-diamond-fill"></i>
@@ -223,32 +225,50 @@ $errores = \Config\Services::validation();
                                     </div>
                                 </div>
                             </div>
-
-                            <h2 class="card-title bg-secondary text-center text-white">DATOS DEL REPRESENTANTE LEGAL O
-                                PROPIETARIO</h2>
+                            <hr class="dropdown-divider">
                             <div class="my-3">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-sm-12 col-md-4">
                                         <div class="row align-items-center">
-                                            <label for="direccion_empresa" class="col-sm-2 col-form-label"><span
-                                                    class="badge bg-secondary badge-label">Buscar persona</span></label>
+                                            <label for="creado" class="col-sm-3 col-form-label"><span
+                                                    class="badge bg-primary badge-label text-wrap">Creado
+                                                </span></label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="creado" name="creado" value="<?=$empresas['creado_el']?>" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="row align-items-center">
+                                            <label for="editado" class="col-sm-3 col-form-label"><span
+                                                    class="badge bg-primary badge-label text-wrap">Editado
+                                                </span></label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="editado" name="editado" value="<?=$empresas['editado_el']?>" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="row align-items-center">
+                                            <label for="desactivado" class="col-sm-4 col-form-label"><span
+                                                    class="badge bg-primary badge-label text-wrap">Desactivado
+                                                </span></label>
                                             <div class="col-sm-8">
-                                                <div class="input-group">
-                                                    <input type="search" name="buscar" id="buscar" class="form-control"
-                                                        placeholder="DUI o NIT" value="<?=old('buscar');?>">
-                                                    <div class="input-group-text">
-                                                        <a class="btn btn-danger" onclick="buscarPersona()"><i
-                                                                class="bi bi-search"></i></a>
-                                                    </div>
-                                                </div>
+                                                <input type="text" class="form-control" id="desactivado" name="desactivado" value="<?=$empresas['desactivado_el']?>" readonly>                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <hr class="dropdown-divider">
+                            <div class="text-muted">
+                                <p>Nota: Las fechas mostrados son en formato de 24 horas.</p>
+                            </div>
+                            <h2 class="card-title bg-secondary text-center text-white">DATOS DEL REPRESENTANTE LEGAL O
+                                PROPIETARIO</h2>
+                            <hr class="dropdown-divider">
                             <div class="my-3">
-                                <input type="text" name="id_persona" id="idPersona">
+                                <input type="hidden" name="id_persona" value="<?= old('id_persona', $empresas['id_persona'])?>">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-8">
                                         <div class="row align-items-center">
@@ -257,7 +277,7 @@ $errores = \Config\Services::validation();
                                                     completo</span></label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="nombre_persona"
-                                                    name="nombre_persona" value="<?=old('nombre_persona');?>">
+                                                    name="nombre_persona" value="<?=old('nombre_persona', $empresas['nombre_persona']);?>">
                                                     <?php if ($errores->getError('nombre_persona')): ?>
                                                 <div class="muted text-danger">
                                                     <i class="bi bi-exclamation-diamond-fill"></i>
@@ -273,7 +293,7 @@ $errores = \Config\Services::validation();
                                                     class="badge bg-secondary badge-label">Telefono</span></label>
                                             <div class="col-sm-9">
                                                 <input type="tel" class="form-control" id="telefono_persona"
-                                                    name="telefono_persona" value="<?=old('telefono_persona');?>">
+                                                    name="telefono_persona" value="<?=old('telefono_persona', $empresas['telefono_persona']);?>">
                                                     <?php if ($errores->getError('telefono_persona')): ?>
                                                 <div class="muted text-danger">
                                                     <i class="bi bi-exclamation-diamond-fill"></i>
@@ -294,7 +314,7 @@ $errores = \Config\Services::validation();
                                                     class="badge bg-secondary badge-label text-wrap">Correo</span></label>
                                             <div class="col-sm-10">
                                                 <input type="email" class="form-control" id="correo_persona"
-                                                    name="correo_persona" value="<?=old('correo_persona');?>">
+                                                    name="correo_persona" value="<?=old('correo_persona', $empresas['correo_persona']);?>">
                                                     <?php if ($errores->getError('correo_persona')): ?>
                                                 <div class="muted text-danger">
                                                     <i class="bi bi-exclamation-diamond-fill"></i>
@@ -309,7 +329,7 @@ $errores = \Config\Services::validation();
                                             <label for="sTipoPersona" class="col-sm-3 col-form-label"><span
                                                     class="badge bg-secondary badge-label">Tipo Persona</span></label>
                                             <div class="col-sm-9">
-                                                <select class="form-select" id="sTipoPersona" name="sTipoPersona">
+                                                <select class="form-select" id="sTipoPersona" name="sTipoPersona" value="<?= old('sTipoPersona', $empresas['id_tipo_persona'])?>">
                                                     <option value="" disabled selected>Seleccionar...</option>
                                                     <?php foreach ($tipoPersonas as $tipo): ?>
 
@@ -359,7 +379,7 @@ $errores = \Config\Services::validation();
                                                     class="badge bg-secondary badge-label text-wrap">DUI</span></label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="dui" name="dui"
-                                                    value="<?=old('dui');?>">
+                                                    value="<?=old('dui', $empresas['dui']);?>">
                                                     <?php if ($errores->getError('dui')): ?>
                                                 <div class="muted text-danger">
                                                     <i class="bi bi-exclamation-diamond-fill"></i>
@@ -375,7 +395,7 @@ $errores = \Config\Services::validation();
                                                     class="badge bg-secondary badge-label">NIT</span></label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="nit" name="nit"
-                                                    value="<?=old('nit');?>">
+                                                    value="<?=old('nit', $empresas['nit']);?>">
                                                     <?php if ($errores->getError('nit')): ?>
                                                 <div class="muted text-danger">
                                                     <i class="bi bi-exclamation-diamond-fill"></i>
@@ -394,10 +414,10 @@ $errores = \Config\Services::validation();
                                         <div class="d-flex justify-content-center">
                                             <div class="ms-3">
                                                 <button type="submit" class="btn btn-success align-center fw-bold"><i
-                                                        class="bi bi-building"></i> Agregar</button>
+                                                        class="bi bi-building"></i> Editar</button>
                                             </div>
                                             <div class="ms-3">
-                                                <a href="<?= site_url(session()->get('rol').'/empresa/index') ?>" class="btn btn-dark align-center fw-bold"><i
+                                                <a href="<?=base_url(session()->get('rol').'/empresa/index')?>" class="btn btn-dark"><i
                                                         class="bi bi-house-fill"></i> Regresar</a>
                                             </div>
                                         </div>
@@ -416,55 +436,51 @@ $errores = \Config\Services::validation();
 <?=$footer?>
 
 <script>
-$('select[name="sRubro"]').val('<?=old('sRubro');?>').change();
-$('select[name="sActividad"]').val('<?=old('sActividad');?>').change();
-$('select[name="sTipoPersona"]').val('<?=old('sTipoPersona');?>').change();
-$('select[name="sColonia"]').val('<?=old('sColonia');?>').change();
-$('textarea[name="direccion_empresa"]').val('<?=old('direccion_empresa');?>');
-$('input[name="id_persona"]').val('<?=old('id_persona');?>');
-$('textarea[name="direccion_contacto"]').val('<?=old('direccion_contacto');?>');
-$('textarea[name="direccion_persona"]').val('<?=old('direccion_persona');?>');
-//$('select[name="direccion_contacto"]').val('<?=old('marca');?>');
-</script>
+$('select[name="sRubro"]').val('<?=old('sRubro', $empresas['id_rubro']);?>').change();
 
+$('select[name="sTipoPersona"]').val('<?=old('sTipoPersona', $empresas['id_tipoP']);?>').change();
+$('select[name="sColonia"]').val('<?=old('sColonia', $empresas['id_colonia']);?>').change();
+$('textarea[name="direccion_empresa"]').val('<?=old('direccion_empresa', $empresas['direccion']);?>');
+$('textarea[name="direccion_contacto"]').val('<?=old('direccion_contacto', $empresas['direccion_contacto']);?>');
+$('textarea[name="direccion_persona"]').val('<?=old('direccion_persona', $empresas['direccion_persona']);?>');
 
-<script>
-function buscarPersona() {
-
-    const id = $("#buscar").val();
-
-    console.log("-> ", id);
-
-    $.ajax({
-        url: "<?php echo base_url('/empresa/buscarPersona/') ?>",
-        type: "POST",
-        data: {
-            id: id
-        },
-        dataType: "JSON",
-        success: function(data) {
-            console.log(data);
-            $('[name="id_persona"]').val(data.id_persona);
-            $('[name="nombre_persona"]').val(data.nombre);
-            $('[name="telefono_persona"]').val(data.telefono);
-            $('[name="correo_persona"]').val(data.correo);
-            $('[name="sTipoPersona"]').val(data.id_tipoP).change();
-            $('[name="direccion_persona"]').val(data.direccion);
-            $('[name="dui"]').val(data.dui);
-            $('[name="nit"]').val(data.nit);
-            mostrarAlerta('success', 'Persona encontrada.');
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-            mostrarAlerta('info', 'No se encontra a la persona.');
-        }
-    });
-}
 </script>
 
 <script>
 $(document).ready(function() {
 
+    var idr = $("#sRubro").val();
+
+        $.ajax({
+            url: "<?php echo site_url('empresa/obtenerActividad'); ?>",
+            method: "POST",
+            data: {
+                id: idr
+            },
+            async: true,
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                //$("#sActividad").attr('disabled', false);
+                var html = '<option value="" disabled selected>Seleccionar...</option>';
+                var i;
+                for (i = 0; i < data.length; i++) {
+                    html += '<option value=' + data[i].idActividad + '>' + data[i]
+                        .actividad +
+                        '</option>';
+                }
+                $('#sActividad').html(html);
+                console.log(html)
+                $('select[name="sActividad"]').val('<?=old('sActividad', $empresas['id_actividad']);?>').change();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                mostrarAlerta('info', 'No se encontra la actividad economica.');
+                //$("#sActividad").attr('disabled', true);
+            }
+        });
+        return false;
+    
     $('#sRubro').change(function() {
         var idr = $(this).val();
 

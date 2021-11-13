@@ -41,21 +41,21 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <div class="row align-items-center">
-                                            <label for="unombre" class="col-sm-2 col-form-label"><span
+                                            <label for="usuario_nombre" class="col-sm-2 col-form-label"><span
                                                     class="badge bg-primary badge-label text-wrap">Nombre
                                                 </span></label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="unombre" name="unombre" value="<?=$usuario['nombre']?>" readonly>
+                                                <input type="text" class="form-control" id="usuario_nombre" name="usuario_nombre" value="<?=$usuario['nombre']?>" readonly>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
                                         <div class="row align-items-center">
-                                            <label for="uapellido" class="col-sm-2 col-form-label"><span
+                                            <label for="usuario_apellido" class="col-sm-2 col-form-label"><span
                                                     class="badge bg-primary badge-label text-wrap">Apellido
                                                 </span></label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="uapellido" name="uapellido" value="<?=$usuario['apellido']?>" readonly>
+                                                <input type="text" class="form-control" id="usuario_apellido" name="usuario_apellido" value="<?=$usuario['apellido']?>" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -66,17 +66,17 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <div class="row align-items-center">
-                                            <label for="ucorreo" class="col-sm-2 col-form-label"><span
+                                            <label for="usuario_correo" class="col-sm-2 col-form-label"><span
                                                     class="badge bg-primary badge-label text-wrap">Correo
                                                 </span></label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="ucorreo" name="ucorreo" value="<?=$usuario['correo']?>" readonly>
+                                                <input type="email" class="form-control" id="usuario_correo" name="usuario_correo" value="<?=$usuario['correo']?>" readonly>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
                                         <div class="row align-items-center">
-                                            <label for="ucorreo" class="col-sm-2 col-form-label"><span
+                                            <label for="usuario_correo" class="col-sm-2 col-form-label"><span
                                                     class="badge bg-primary badge-label text-wrap">Ultimo acceso
                                                 </span></label>
                                             <div class="col-sm-10">
@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-4">
                                         <div class="row align-items-center">
-                                            <label for="ucorreo" class="col-sm-4 col-form-label"><span
+                                            <label for="usuario_correo" class="col-sm-4 col-form-label"><span
                                                     class="badge bg-primary badge-label text-wrap">Desactivado
                                                 </span></label>
                                             <div class="col-sm-8">

@@ -64,15 +64,15 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <div class="row align-items-center">
-                                            <label for="unombre" class="col-sm-2 col-form-label"><span
+                                            <label for="usuario_nombre" class="col-sm-2 col-form-label"><span
                                                     class="badge bg-primary badge-label text-wrap">Nombre
                                                 </span></label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="unombre" name="unombre">
-                                                <?php if ($errores->getError('unombre')): ?>
+                                                <input type="text" class="form-control" id="usuario_nombre" name="usuario_nombre">
+                                                <?php if ($errores->getError('usuario_nombre')): ?>
                                                 <div class="muted text-danger">
                                                     <i class="bi bi-exclamation-diamond-fill"></i>
-                                                    <?=$errores->getError('unombre');?>
+                                                    <?=$errores->getError('usuario_nombre');?>
                                                 </div>
                                                 <?php endif;?>
                                             </div>
@@ -80,15 +80,15 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6">
                                         <div class="row align-items-center">
-                                            <label for="uapellido" class="col-sm-2 col-form-label"><span
+                                            <label for="usuario_apellido" class="col-sm-2 col-form-label"><span
                                                     class="badge bg-primary badge-label text-wrap">Apellido
                                                 </span></label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="uapellido" name="uapellido">
-                                                <?php if ($errores->getError('uapellido')): ?>
+                                                <input type="text" class="form-control" id="usuario_apellido" name="usuario_apellido">
+                                                <?php if ($errores->getError('usuario_apellido')): ?>
                                                 <div class="muted text-danger">
                                                     <i class="bi bi-exclamation-diamond-fill"></i>
-                                                    <?=$errores->getError('uapellido');?>
+                                                    <?=$errores->getError('usuario_apellido');?>
                                                 </div>
                                                 <?php endif;?>
                                             </div>
@@ -101,15 +101,15 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <div class="row align-items-center">
-                                            <label for="ucorreo" class="col-sm-2 col-form-label"><span
+                                            <label for="usuario_correo" class="col-sm-2 col-form-label"><span
                                                     class="badge bg-primary badge-label text-wrap">Correo
                                                 </span></label>
                                             <div class="col-sm-10">
-                                                <input type="ucorreo" class="form-control" id="ucorreo" name="ucorreo">
-                                                <?php if ($errores->getError('ucorreo')): ?>
+                                                <input type="usuario_correo" class="form-control" id="usuario_correo" name="usuario_correo">
+                                                <?php if ($errores->getError('usuario_correo')): ?>
                                                 <div class="muted text-danger">
                                                     <i class="bi bi-exclamation-diamond-fill"></i>
-                                                    <?=$errores->getError('ucorreo');?>
+                                                    <?=$errores->getError('usuario_correo');?>
                                                 </div>
                                                 <?php endif;?>
                                             </div>

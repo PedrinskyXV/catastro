@@ -88,9 +88,9 @@ class UsuarioController extends Controller
 
             $validar = $this->validate([
                 'usuario' => 'required|min_length[5]|max_length[50]|alpha_numeric|is_unique[usuario.usuario]',
-                'unombre' => 'required|min_length[3]|max_length[50]|alpha',
-                'uapellido' => 'required|min_length[3]|max_length[50]|alpha',
-                'ucorreo' => 'required|min_length[8]|max_length[80]|valid_email|is_unique[usuario.correo]',
+                'usuario_nombre' => 'required|min_length[3]|max_length[50]|alpha',
+                'usuario_apellido' => 'required|min_length[3]|max_length[50]|alpha',
+                'usuario_correo' => 'required|min_length[8]|max_length[80]|valid_email|is_unique[usuario.correo]',
                 'sRol' => 'required|is_natural_no_zero',
             ],
                 [
@@ -101,19 +101,19 @@ class UsuarioController extends Controller
                         'alpha_numeric' => 'El usuario debe tener solo letras y numeros.',
                         'is_unique' => 'El usuario ya existe.',
                     ],
-                    'unombre' => [
+                    'usuario_nombre' => [
                         'required' => 'El nombre es requerido.',
                         'min_length' => 'El nombre debe tener como minimo 3 caracteres.',
                         'max_length' => 'El nombre debe tener como maximo 50 caracteres.',
                         'alpha_numeric' => 'El nombre debe tener solo letras .',
                     ],
-                    'uapellido' => [
+                    'usuario_apellido' => [
                         'required' => 'El apellido es requerido.',
                         'min_length' => 'El apellido debe tener como minimo 3 caracteres.',
                         'max_length' => 'El apellido debe tener como maximo 50 caracteres.',
                         'alpha_numeric' => 'El apellido debe tener solo letras .',
                     ],
-                    'ucorreo' => [
+                    'usuario_correo' => [
                         'required' => 'El correo es requerido.',
                         'min_length' => 'El correo debe tener como minimo 8 caracteres.',
                         'max_length' => 'El correo debe tener como maximo 80 caracteres.',
@@ -135,9 +135,9 @@ class UsuarioController extends Controller
 
                     $usuario->usuario = $nuevoUsuario;
                     $usuario->clave = $default;
-                    $usuario->nombre = $this->request->getVar('unombre');
-                    $usuario->apellido = $this->request->getVar('uapellido');
-                    $usuario->correo = $this->request->getVar('ucorreo');
+                    $usuario->nombre = $this->request->getVar('usuario_nombre');
+                    $usuario->apellido = $this->request->getVar('usuario_apellido');
+                    $usuario->correo = $this->request->getVar('usuario_correo');
                     $usuario->id_rol = $this->request->getVar('sRol');
 
                     if ($usuarioModel->save($usuario)) {
@@ -223,9 +223,9 @@ class UsuarioController extends Controller
 
             $validar = $this->validate([
                 'usuario' => 'required|min_length[5]|max_length[50]|alpha_numeric',
-                'unombre' => 'required|min_length[3]|max_length[50]|alpha',
-                'uapellido' => 'required|min_length[3]|max_length[50]|alpha',
-                'ucorreo' => 'required|min_length[8]|max_length[80]|valid_email',
+                'usuario_nombre' => 'required|min_length[3]|max_length[50]|alpha',
+                'usuario_apellido' => 'required|min_length[3]|max_length[50]|alpha',
+                'usuario_correo' => 'required|min_length[8]|max_length[80]|valid_email',
                 'sRol' => 'required|is_natural_no_zero',
             ],
                 [
@@ -235,19 +235,19 @@ class UsuarioController extends Controller
                         'max_length' => 'El usuario debe tener como maximo 50 caracteres.',
                         'alpha_numeric' => 'El usuario debe tener solo letras y numeros.',                        
                     ],
-                    'unombre' => [
+                    'usuario_nombre' => [
                         'required' => 'El nombre es requerido.',
                         'min_length' => 'El nombre debe tener como minimo 3 caracteres.',
                         'max_length' => 'El nombre debe tener como maximo 50 caracteres.',
                         'alpha_numeric' => 'El nombre debe tener solo letras .',
                     ],
-                    'uapellido' => [
+                    'usuario_apellido' => [
                         'required' => 'El apellido es requerido.',
                         'min_length' => 'El apellido debe tener como minimo 3 caracteres.',
                         'max_length' => 'El apellido debe tener como maximo 50 caracteres.',
                         'alpha_numeric' => 'El apellido debe tener solo letras .',
                     ],
-                    'ucorreo' => [
+                    'usuario_correo' => [
                         'required' => 'El correo es requerido.',
                         'min_length' => 'El correo debe tener como minimo 8 caracteres.',
                         'max_length' => 'El correo debe tener como maximo 80 caracteres.',
@@ -263,9 +263,9 @@ class UsuarioController extends Controller
 
                 $data = [
                     'usuario' => $nuevoUsuario,
-                    'nombre' => $this->request->getVar('unombre'),
-                    'apellido' => $this->request->getVar('uapellido'),
-                    'correo' => $this->request->getVar('ucorreo'),
+                    'nombre' => $this->request->getVar('usuario_nombre'),
+                    'apellido' => $this->request->getVar('usuario_apellido'),
+                    'correo' => $this->request->getVar('usuario_correo'),
                     'id_rol' => $this->request->getVar('sRol'),
                 ];
 

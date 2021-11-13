@@ -77,7 +77,7 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         order: [], //init datatable not ordering
-        ajax: "<?php echo base_url('/usuario/ajaxUsuarios') ?>",
+        ajax: "<?php echo base_url(session()->get('rol').'/usuario/ajaxUsuarios') ?>",
         columnDefs: [{
             targets: 0,
             orderable: false

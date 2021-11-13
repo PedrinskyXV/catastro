@@ -4,10 +4,7 @@
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
     <div class="copyright">
-        &copy; 2021 Copyright <strong><span>ITCA-FEPADE</span></strong>. Todo los derechos reservados.
-        <?php helper('date'); ?>
-        <br/> SITIO URL <?= now('America/El_Salvador') ?>
-        <br/> BASE URL <?= base_url() ?>
+        &copy; 2021 Copyright <strong><span>ITCA-FEPADE</span></strong>. Todo los derechos reservados.        
     </div>
 </footer><!-- End Footer -->
 
@@ -16,7 +13,7 @@
 <script src="<?=base_url()?>/plugins/php-email-form/validate.js"></script>
 <script src="<?=base_url()?>/plugins/quill/quill.min.js"></script>
 <script src="<?=base_url()?>/plugins/tinymce/tinymce.min.js"></script>
-<script src="<?=base_url()?>/plugins/simple-datatables/simple-datatables.js"></script>
+<!-- <script src="<?=base_url()?>/plugins/simple-datatables/simple-datatables.js"></script> -->
 <script src="<?=base_url()?>/plugins/chart.js/chart.min.js"></script>
 <script src="<?=base_url()?>/plugins/apexcharts/apexcharts.min.js"></script>
 <script src="<?=base_url()?>/plugins/echarts/echarts.min.js"></script>
@@ -30,33 +27,10 @@
 <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script> -->
 <!-- Or use CDN -->
 <script src="https://cdn.jsdelivr.net/gh/fcmam5/nightly.js@v1.0/dist/nightly.min.js"></script>
-<script src="<?= base_url('/vendor/validetta/validetta.js');?>"></script>
+<script src="<?= base_url('/plugins/validetta/validetta.js');?>"></script>
 <!-- Template Main JS File -->
 <script src="<?=base_url()?>/js/main.js"></script>
 <script src="<?=base_url()?>/js/app.js"></script>
-
-<script>
-const dui = document.getElementById("dui");
-const nit = document.getElementById("nit");
-const telEmpresa = document.getElementById("telEmpresa");
-const telPersona = document.getElementById("telPersona");
-
-$(document).ready(function() {
-    $(dui).inputmask({
-        "mask": "99999999-9"
-    });
-    $(nit).inputmask({
-        "mask": "9999-999999-999-9"
-    });
-
-    $(telEmpresa).inputmask({
-        "mask": "9999-9999"
-    });
-    $(telPersona).inputmask({
-        "mask": "9999-9999"
-    });
-});
-</script>
 
 <script>
 $(window).on("load", function() {
