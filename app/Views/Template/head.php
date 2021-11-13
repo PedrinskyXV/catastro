@@ -22,19 +22,19 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="<?= base_url() ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="<?= base_url() ?>/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>/plugins/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="<?= base_url() ?>/plugins/remixicon/remixicon.css" rel="stylesheet">
+    <link href="<?= base_url() ?>/plugins/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>/plugins/quill/quill.snow.css" rel="stylesheet">
+    <link href="<?= base_url() ?>/plugins/quill/quill.bubble.css" rel="stylesheet">
+    <link href="<?= base_url() ?>/plugins/simple-datatables/style.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="<?= base_url() ?>/css/style.css" rel="stylesheet">
 
     
-    <link href="<?= base_url() ?>/vendor/Datatables/datatables.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>/plugins/Datatables/datatables.min.css" rel="stylesheet">
 
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css" /> -->
 

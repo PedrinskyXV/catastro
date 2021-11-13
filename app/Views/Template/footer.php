@@ -12,20 +12,20 @@
 </footer><!-- End Footer -->
 
 <!-- Vendor JS Files -->
-<script src="<?=base_url()?>/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-<script src="<?=base_url()?>/vendor/php-email-form/validate.js"></script>
-<script src="<?=base_url()?>/vendor/quill/quill.min.js"></script>
-<script src="<?=base_url()?>/vendor/tinymce/tinymce.min.js"></script>
-<script src="<?=base_url()?>/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="<?=base_url()?>/vendor/chart.js/chart.min.js"></script>
-<script src="<?=base_url()?>/vendor/apexcharts/apexcharts.min.js"></script>
-<script src="<?=base_url()?>/vendor/echarts/echarts.min.js"></script>
+<script src="<?=base_url()?>/plugins/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="<?=base_url()?>/plugins/php-email-form/validate.js"></script>
+<script src="<?=base_url()?>/plugins/quill/quill.min.js"></script>
+<script src="<?=base_url()?>/plugins/tinymce/tinymce.min.js"></script>
+<script src="<?=base_url()?>/plugins/simple-datatables/simple-datatables.js"></script>
+<script src="<?=base_url()?>/plugins/chart.js/chart.min.js"></script>
+<script src="<?=base_url()?>/plugins/apexcharts/apexcharts.min.js"></script>
+<script src="<?=base_url()?>/plugins/echarts/echarts.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"
     integrity="sha512-6Jym48dWwVjfmvB0Hu3/4jn4TODd6uvkxdi9GNbBHwZ4nGcRxJUCaTkL3pVY6XUQABqFo3T58EMXFQztbjvAFQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="<?=base_url()?>/vendor/Datatables/datatables.min.js"></script>
+<script src="<?=base_url()?>/plugins/Datatables/datatables.min.js"></script>
 
 <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script> -->
 <!-- Or use CDN -->

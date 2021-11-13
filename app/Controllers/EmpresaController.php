@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Models\EmpresaModel;
 use App\Models\PersonaModel;
+use App\Models\RubroModel;
 use App\Models\TipoPersonaModel;
+use App\Models\UsuarioModel;
 use \Hermawan\DataTables\DataTable;
 
 class EmpresaController extends BaseController
@@ -19,6 +21,9 @@ class EmpresaController extends BaseController
 
         $tipo = new TipoPersonaModel();
         $datos['tipoPersonas'] = $tipo->findAll();
+
+        $rubro = new RubroModel();
+        $datos['rubros'] = $rubro->findAll();
         
         return view('Empresa/agregar', $datos);
     }
@@ -39,17 +44,20 @@ class EmpresaController extends BaseController
         var_dump($_POST);
         die();
         
-        if ($_POST) {
-            
+        $usuarioModel = new UsuarioModel();
 
-            $data = [
-                'usuario' => $nuevoUsuario,
+        if ($_POST) {
+                        
+            $dataEmpresa = [                
                 'rol' => $this->request->getVar('sRol'),
                 'nombre' => $this->request->getVar('unombre'),
                 'apellido' => $this->request->getVar('uapellido'),
                 'correo' => $this->request->getVar('ucorreo'),
             ];
 
+            $dataPersona = [
+
+            ];
             
 
             if (empty($verificar)) {
