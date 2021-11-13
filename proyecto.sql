@@ -80,6 +80,8 @@ create table empresa (
     telefono varchar(17),
     direccion varchar(250) not null,
     direccion_contacto varchar(17),
+    actividad_principal varchar(250),
+    actividad_economica varchar(250),
     id_colonia int not null,
     foreign key (id_colonia)
         references colonia (id_colonia),
@@ -105,15 +107,14 @@ create table actividad_economica (
 );
 
 create table empresa_actividad (
+	noCuenta int primary key auto_increment,
     idActividad int not null,
-    foreign key (idActividad)
-        references actividad_economica (idActividad),
-    id_empresa int not null,
-    foreign key (id_empresa)
-        references empresa (id_empresa),
-    noCuenta int not null,
+    foreign key (idActividad) references actividad_economica (idActividad) on update cascade on delete no action,
+    id_empresa int not null, 
+    foreign key (id_empresa) references empresa (id_empresa) on update cascade on delete no action,
     montoReportado float not null,
-    montoImpuestos float not null,
+    montoPorcentaje float,
+    montoFijo float,
     creado_el timestamp default current_timestamp,
     editado_el timestamp default current_timestamp,
     desactivado_el timestamp default current_timestamp,
@@ -206,6 +207,24 @@ end$$
 
 DELIMITER ;
 
+
+DELIMITER //
+CREATE TRIGGER tr_CalcularMonto before INSERT ON empresa_actividad FOR EACH ROW
+BEGIN
+SET @tasa = (select SUM(tributo.tasa) from actividad_tributo
+	inner join tributo on actividad_tributo.idTributo = tributo.idTributo
+	inner join actividad_economica on actividad_tributo.idActividad = actividad_economica.idActividad
+	where tributo.tipo = 'Municipal Porcentual' and actividad_economica.idActividad = new.idActividad or tributo.tipo = 'Anual Porcentual' and actividad_economica.idActividad = new.idActividad);
+SET new.montoPorcentaje = (@tasa * new.montoReportado);
+
+SET @tasa = (select SUM(tributo.tasa) from actividad_tributo
+	inner join tributo on actividad_tributo.idTributo = tributo.idTributo
+	inner join actividad_economica on actividad_tributo.idActividad = actividad_economica.idActividad
+	where tributo.tipo = 'Municipal Fijo' and actividad_economica.idActividad = new.idActividad or tributo.tipo = 'Anual Fijo' and actividad_economica.idActividad = new.idActividad);
+SET new.montoFijo = @tasa;
+END//
+DELIMITER ;
+
 insert into rol (rol) values
 ('SuperAdmin'),
 ('Administador'),
@@ -241,10 +260,10 @@ call sp_llenarBitacora (1,1,'rubro');
 
 insert into actividad_economica (actividad,idRubro) values
 ('Salas de billar', 1),
+('Radiodifusoras', 3),
 ('Actividades inmoviliarias realazidas con bienes propios o arrendadeos', 1),
 ('Construccion', 2),
 ('Extraccion de piedra, arena y arcilla', 2),
-('Radiodifusoras', 3),
 ('Servicios profesionales y tecnicos', 3),
 ('Actividades de contabilidad (despachos contables)', 4),
 ('Servicios de asesoría y consultoría en gestión financiera', 4);
@@ -263,21 +282,24 @@ insert into tributo (nombre, tasa, tipo, razon) values
 ('Impuesto C', 58, 'Municipal Fijo', 'Tarifa de arbitrios de la municipalidad'),
 ('Impuesto D', 35, 'Municipal Fijo', 'Tarifa de arbitrios de la municipalidad'),
 ('Impuesto E', 90, 'Municipal Fijo', 'Tarifa de arbitrios de la municipalidad'),
-('Impuesto F', 10, 'Municipal Fijo', 'Tarifa de arbitrios de la municipalidad'),
+('Impuesto F', 0.10, 'Municipal Porcentual', 'Tarifa de arbitrios de la municipalidad'),
 ('Impuesto G', 4.50, 'Municipal Fijo', 'Tarifa de arbitrios de la municipalidad'),
 ('Impuesto H', 15, 'Municipal Fijo', 'Tarifa de arbitrios de la municipalidad');
-call sp_llenarBitacora (1,1,'actividad_economica');
+call sp_llenarBitacora (1,1,'tributo');
 
+-- select * from actividad_economica;
+-- select * from tributo;
 
 insert into actividad_tributo (idTributo, idActividad) values
 (1,1),
 (7,1),
 (9,1),
-(8,2),
-(10,2),
-(3,3),
-(4,3),
-(6,4),
+(5,2),
+(13,2),
+(10,3),
+(8,3),
+(3,4),
+(4,4),
 (9,5),
 (5,5),
 (8,6),
@@ -288,7 +310,6 @@ insert into actividad_tributo (idTributo, idActividad) values
 (14,8);
 call sp_llenarBitacora (1,1,'actividad_tributo');
 
-CALl sp_llenarBitacora (1,1,'actividad_economica');
 insert into persona (nombre,correo, direccion, dui, nit, telefono, id_tipoP) values
 ('Pedro Perez', 'pedrinsky@gmail.com', 'direccion X', '1234567890', '12345678901234', '77777777', 1),
 ('Jorge Garcia', 'jGarcia@gmail.com', 'direccion X', '1234567891', '12345678901235', '77777777', 1),
@@ -404,7 +425,35 @@ insert into empresa (id_persona, nombre_juridico, nombre_comercial, correo, tele
 (4, 'Carter & Windler', 'Jensyn Acquistion Corp.', 'ctow@gmail.com', '2289-0202', '4 Westport Hill', '2289-0203', 4),
 (5, 'Wunschalter', 'Corcept Incorporated', 'wunsCorcept@gmail.com', '2263-6134', '92 Monica Drive', '2263-6135', 5);
 CAlL sp_llenarBitacora (1,1,'empresa');
+-- select * from empresa;
+-- select * from actividad_economica;
+insert into empresa_actividad (id_empresa, idActividad, montoReportado) values
+(1,2,10000),
+(4,4,1000);
+CAlL sp_llenarBitacora (1,1,'empresa_actividad');
 
-select actividad_economica.actividad, tributo.nombre, tributo.tasa from actividad_tributo
+/*select actividad_economica.actividad, tributo.nombre, tributo.tasa from actividad_tributo
 inner join tributo on actividad_tributo.idTributo = tributo.idTributo
 inner join actividad_economica on actividad_tributo.idActividad = actividad_economica.idActividad;
+select * from empresa;
+select * from actividad_economica;
+select * from actividad_tributo;
+select * from tributo;
+select * from empresa_actividad;*//*
+select actividad_economica.actividad, tributo.nombre from actividad_tributo
+inner join tributo on actividad_tributo.idTributo = tributo.idTributo
+inner join actividad_economica on actividad_tributo.idActividad = actividad_economica.idActividad;*/
+/*
+select empresa.nombre_comercial, empresa.nombre_juridico,  tributo.tasa from actividad_tributo
+inner join tributo on actividad_tributo.idTributo = tributo.idTributo
+inner join actividad_economica on actividad_tributo.idActividad = actividad_economica.idActividad
+inner join empresa_actividad on actividad_economica.idActividad = empresa_actividad.idActividad
+inner join empresa on empresa_actividad.id_empresa = empresa.id_empresa
+where tributo.tipo = 'Municipal Porcentual' and empresa.id_empresa = new.idActividad or tributo.tipo = 'Anual Porcentual' and actividad_economica.idActividad = new.idActividad
+group by empresa.nombre_comercial;
+
+select tributo.tasa from actividad_tributo
+inner join tributo on actividad_tributo.idTributo = tributo.idTributo
+inner join actividad_economica on actividad_tributo.idActividad = actividad_economica.idActividad
+where tributo.tipo = 'Municipal Fijo' and actividad_economica.idActividad = new.idActividad or tributo.tipo = 'Anual Fijo' and actividad_economica.idActividad = new.idActividad;*/
+
