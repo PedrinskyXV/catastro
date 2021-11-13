@@ -93,3 +93,7 @@ $routes->get('zona/ajaxZonas', 'ZonaController::ajaxZonas');
 $routes->get('colonia/index', 'ColoniaController::Index');
 $routes->get('colonia/agregar', 'ColoniaController::Agregar');
 $routes->get('colonia/ajaxColonias', 'ColoniaController::ajaxColonias');
+
+$routes->get('informes/estadocuenta', 'PDF::Index');
+$routes->post('informes/informeEstado', 'PDF::informeEstadoCuenta');
+$routes->get('informes/informeTributoporRubro', 'PDF::informeTributoporRubro');

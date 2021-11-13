@@ -41,16 +41,16 @@
       <li class="nav-heading">Reportes</li>      
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
+        <a class="nav-link collapsed" href="<?php echo base_url('/informes/estadocuenta') ?>">
           <i class="bi bi-question-circle"></i>
           <span>Estado de cuenta</span>
         </a>
       </li><!-- End Estado de cuenta Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
+        <a class="nav-link collapsed" href="<?php echo base_url('/informes/informeTributoporRubro') ?>">
           <i class="bi bi-check2-all"></i>
-          <span>Completo de empresa</span>
+          <span>Tributo por Rubro</span>
         </a>
       </li><!-- End Completo de empresa Nav -->
 

@@ -3,7 +3,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class TributoModel extends Model
+class ActividadTributoModel extends Model
 {
     protected $table = 'actividad_tributo';
     //protected $primaryKey = 'idActividad';
@@ -14,13 +14,5 @@ class TributoModel extends Model
         'idTributo', 'idActividad', 'estado',
     ];
 
-    public function obtenerActividades()
-    {
-        $builder = $this->db->table("actividad_tributo")
-        ->select('actividad_economica.actividad, tributo.nombre, tributo.tasa')
-        ->join('tributo', 'actividad_tributo.idTributo = tributo.idTributo')
-        ->join('actividad_economica', 'actividad_tributo.idActividad = actividad_economica.idActividad');              
-        return $builder;
-    }
 }
 ?>

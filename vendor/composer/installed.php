@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '1d1a408aeab2c28b778c74f273556d210e680d4c',
+        'reference' => '4f03938eaf6abf94c90a11abf5d0599b47fa5fac',
         'name' => 'codeigniter4/framework',
         'dev' => true,
     ),
@@ -25,7 +25,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '1d1a408aeab2c28b778c74f273556d210e680d4c',
+            'reference' => '4f03938eaf6abf94c90a11abf5d0599b47fa5fac',
             'dev_requirement' => false,
         ),
         'codeigniter4/translations' => array(
