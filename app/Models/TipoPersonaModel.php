@@ -3,7 +3,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class RolModel extends Model
+class TipoPersonaModel extends Model
 {
     protected $table = 'tipo_persona';
     // Uncomment below if you want add primary key

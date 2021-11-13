@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\EmpresaModel;
 use App\Models\PersonaModel;
+use App\Models\TipoPersonaModel;
 use \Hermawan\DataTables\DataTable;
 
 class EmpresaController extends BaseController
@@ -15,6 +16,9 @@ class EmpresaController extends BaseController
         $datos['header'] = view('Template/header');
         $datos['sidebar'] = view('Template/sidebar');
         $datos['footer'] = view('Template/footer');
+
+        $tipo = new TipoPersonaModel();
+        $datos['tipoPersonas'] = $tipo->findAll();
         
         return view('Empresa/agregar', $datos);
     }

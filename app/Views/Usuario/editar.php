@@ -11,7 +11,7 @@ $errores = \Config\Services::validation();
         <div class="row">
             <div class="col-12">
                 <div class="card shadow p-3">
-                    <h1 class="card-title bg-dark text-center text-white fw-bold text-uppercase">Registrar usuario</h1>
+                    <h1 class="card-title bg-dark text-center text-white fw-bold text-uppercase">Editar usuario</h1>
                     <h2 class="card-title bg-primary text-center text-white">DATOS DEL USUARIO</h2>
                     <div class="card-body">
                         <form action="<?=base_url('usuario/modificar')?>" method="POST">
@@ -160,7 +160,7 @@ $errores = \Config\Services::validation();
                                     <div class="col">
                                         <div class="d-flex justify-content-center">
                                             <div class="ms-3">
-                                                <button type="submit" class="btn btn-info align-center fw-bold"><i
+                                                <button type="submit" class="btn btn-primary align-center fw-bold"><i
                                                         class="bi bi-person-plus-fill"></i> Editar</button>
                                             </div>
                                             <div class="ms-3">

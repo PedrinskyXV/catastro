@@ -2,6 +2,10 @@
 <?=$header?>
 <?=$sidebar?>
 
+<?php
+    $errores = \Config\Services::validation();
+?>
+
 <main id="main" class="main">
     <section class="section">
         <div class="row">
@@ -174,6 +178,44 @@
                                             <div class="col-sm-9">
                                                 <input type="tel" class="form-control" id="telPersona"
                                                     name="telPersona">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="dropdown-divider">
+                            <div class="my-3">
+                                <input type="hidden" name="idPersona">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="row align-items-center">
+                                            <label for="nombrePersona" class="col-sm-2 col-form-label"><span
+                                                    class="badge bg-primary badge-label text-wrap">Correo</span></label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="correoPersona"
+                                                    name="correoPersona">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="row align-items-center">
+                                            <label for="telPersona" class="col-sm-3 col-form-label"><span
+                                                    class="badge bg-primary badge-label">Tipo Persona</span></label>
+                                            <div class="col-sm-9">
+                                            <select class="form-select" id="tipoPersona" name="tipoPersona">
+                                                    <option value="" disabled selected>Seleccionar...</option>
+                                                    <?php foreach($tipoPersonas as $tipo): ?>
+                                                    
+                                                    <option value="<?= $tipo['id_tipoP'] ?>"><?= $tipo['nombre']; ?></option>
+                                                    
+                                                    <?php endforeach; ?>
+                                                </select>
+                                                <?php if ($errores->getError('tipoPersona')): ?>
+                                                <div class="muted text-danger">
+                                                    <i class="bi bi-exclamation-diamond-fill"></i>
+                                                    <?=$errores->getError('tipoPersona');?>
+                                                </div>
+                                                <?php endif;?>
                                             </div>
                                         </div>
                                     </div>

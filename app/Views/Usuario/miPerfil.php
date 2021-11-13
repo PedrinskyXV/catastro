@@ -29,7 +29,7 @@ $errores = \Config\Services::validation();
                         <ul class="nav nav-tabs nav-tabs-bordered">
 
                             <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab"
+                                <button class="nav-link active" data-bs-toggle="tab"
                                     data-bs-target="#profile-overview">Descripción</button>
                             </li>
 
@@ -85,7 +85,7 @@ $errores = \Config\Services::validation();
                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                 <!-- Profile Edit Form -->
-                                <form action="<?=base_url('usuario/editar')?>" method="POST">
+                                <form action="<?=base_url('usuario/editarPerfil')?>" method="POST">
                                     <input type="hidden" name="id" id="id" value="<?=$_id;?>">
                                     <div class="row mb-3">
                                         <label for="usuario" class="col-md-4 col-lg-3 col-form-label">Usuario</label>

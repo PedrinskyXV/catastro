@@ -9,7 +9,7 @@ class UsuarioModel extends Model{
     // Uncomment below if you want add primary key
     protected $primaryKey = 'id_usuario';
 
-    protected $allowedFields = ['usuario', 'clave', 'nombre', 'apellido', 'correo', 'id_rol', 'estado'];
+    protected $allowedFields = ['usuario', 'clave', 'nombre', 'apellido', 'correo', 'id_rol', 'estado', 'ultimo_acceso'];
 
     protected $returnType = 'App\Entities\Usuario';
     protected $useSoftDeletes = true;
@@ -21,10 +21,11 @@ class UsuarioModel extends Model{
 
     public function obtenerUsuario()
     {
+        $actual = session()->get('idUsuario');
         $builder = $this->db->table("usuario");
         $builder->select('usuario.id_usuario, usuario.usuario, usuario.nombre, usuario.apellido, usuario.correo, usuario.ultimo_acceso as acceso, usuario.estado, rol.rol as rol_nombre, rol.id_rol');
         $builder->join('rol', 'usuario.id_rol = rol.id_rol');
-        $builder->whereNotIn('usuario.id_usuario', ['1']);
+        $builder->whereNotIn('usuario.id_usuario', [$actual, '1']);
         
         return $builder;
     }
