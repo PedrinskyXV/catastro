@@ -15,31 +15,35 @@
                     </h1>
                     <h2 class="card-title bg-primary text-center text-white">DATOS DE LA EMPRESA</h2>
                     <div class="card-body">
-                        <form action="<?= base_url('/empresa/insertar') ?>">
-                            <div class="my-3 align-items-center">
-                                <label for="actividadEconomica" class="col-sm-2"><span
-                                        class="badge bg-primary badge-label">Actividad
-                                        Económica</span>
-                                </label>
-                                <div class="form-check form-check-inline col-sm-2">
-                                    <input class="form-check-input" type="checkbox" id="actividadEconomica"
-                                        name="actividadEconomica" value="Comercial">
-                                    <label class="form-check-label" for="actividadEconomica">Comercial</label>
-                                </div>
-                                <div class="form-check form-check-inline col-sm-2">
-                                    <input class="form-check-input" type="checkbox" id="actividadEconomica"
-                                        name="actividadEconomica" value="Industrial">
-                                    <label class="form-check-label" for="actividadEconomica">Industrial</label>
-                                </div>
-                                <div class="form-check form-check-inline col-sm-2">
-                                    <input class="form-check-input" type="checkbox" id="actividadEconomica"
-                                        name="actividadEconomica" value="Servicio">
-                                    <label class="form-check-label" for="actividadEconomica">Servicio</label>
-                                </div>
-                                <div class="form-check form-check-inline col-sm-2">
-                                    <input class="form-check-input" type="checkbox" id="actividadEconomica"
-                                        name="actividadEconomica" value="Financiera">
-                                    <label class="form-check-label" for="actividadEconomica">Financiera</label>
+                        <form action="<?= base_url('/empresa/insertar') ?>" method="POST">
+                            <div class="my-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row">
+                                            <label for="actividadEconomica" class="col-sm-2"><span
+                                                    class="badge bg-primary badge-label">Actividad
+                                                    Económica</span>
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <select class="form-select" id="actividadEconomica"
+                                                    name="actividadEconomica">
+                                                    <option value="" disabled selected>Seleccionar...</option>
+                                                    <?php foreach($rubros as $rubro): ?>
+
+                                                    <option value="<?= $rubro['idRubro'] ?>"><?= $rubro['nombre']; ?>
+                                                    </option>
+
+                                                    <?php endforeach; ?>
+                                                </select>
+                                                <?php if ($errores->getError('tipoPersona')): ?>
+                                                <div class="muted text-danger">
+                                                    <i class="bi bi-exclamation-diamond-fill"></i>
+                                                    <?=$errores->getError('tipoPersona');?>
+                                                </div>
+                                                <?php endif;?>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <hr class="dropdown-divider">
@@ -99,7 +103,7 @@
                                                     class="badge bg-primary badge-label text-wrap">Denominación
                                                     Comercial</span></label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="denominacionComercial"
+                                                <input type="text" class="form-control" id="denominacionComercial"
                                                     name="denominacionComercial">
                                             </div>
                                         </div>
@@ -202,12 +206,13 @@
                                             <label for="telPersona" class="col-sm-3 col-form-label"><span
                                                     class="badge bg-primary badge-label">Tipo Persona</span></label>
                                             <div class="col-sm-9">
-                                            <select class="form-select" id="tipoPersona" name="tipoPersona">
+                                                <select class="form-select" id="tipoPersona" name="tipoPersona">
                                                     <option value="" disabled selected>Seleccionar...</option>
                                                     <?php foreach($tipoPersonas as $tipo): ?>
-                                                    
-                                                    <option value="<?= $tipo['id_tipoP'] ?>"><?= $tipo['nombre']; ?></option>
-                                                    
+
+                                                    <option value="<?= $tipo['id_tipoP'] ?>"><?= $tipo['nombre']; ?>
+                                                    </option>
+
                                                     <?php endforeach; ?>
                                                 </select>
                                                 <?php if ($errores->getError('tipoPersona')): ?>
