@@ -26,7 +26,7 @@ class UsuarioModel extends Model{
         $builder->select('usuario.id_usuario, usuario.usuario, usuario.nombre, usuario.apellido, usuario.correo, usuario.ultimo_acceso as acceso, usuario.estado, rol.rol as rol_nombre, rol.id_rol');
         $builder->join('rol', 'usuario.id_rol = rol.id_rol');
         $builder->whereNotIn('usuario.id_usuario', [$actual, '1']);
-        
+        //echo($builder->get()->getResult());
         return $builder;
     }
 

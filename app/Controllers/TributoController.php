@@ -2,55 +2,41 @@
 
 namespace App\Controllers;
 
-use App\Models\ColoniaModel;
-use App\Models\ZonaModel;
+use App\Models\TributoModel;
 use \Hermawan\DataTables\DataTable;
 
-class ColoniaController extends BaseController
+class TributoController extends BaseController
 {
     public function Agregar()
     {
-        $datos['titulo'] = ucfirst('agregar colonia');
+        $datos['titulo'] = ucfirst('agregar tributo');
         $datos['head'] = view('Template/head', $datos);
         $datos['header'] = view('Template/header');
         $datos['sidebar'] = view('Template/sidebar');
         $datos['footer'] = view('Template/footer');
-        $zona = new ZonaModel();
-        $datos['zonas'] = $zona->findAll();
-        return view('Colonia/agregar', $datos);
-    }
-    public function Editar()
-    {
-        $datos['titulo'] = ucfirst('agregar colonia');
-        $datos['head'] = view('Template/head', $datos);
-        $datos['header'] = view('Template/header');
-        $datos['sidebar'] = view('Template/sidebar');
-        $datos['footer'] = view('Template/footer');
-        $zona = new ZonaModel();
-        $datos['zonas'] = $zona->findAll();
-        return view('Colonia/editar', $datos);
+
+        return view('Tributo/agregar', $datos);
     }
 
     public function Index()
     {
-        $datos['titulo'] = ucfirst('colonias');
+        $datos['titulo'] = ucfirst('tributos');
         $datos['head'] = view('Template/head', $datos);
         $datos['header'] = view('Template/header');
         $datos['sidebar'] = view('Template/sidebar');
-        $datos['footer'] = view('Template/footer');
-        
+        $datos['footer'] = view('Template/footer');        
 
-        return view('Colonia/index', $datos);
+        return view('Tributo/index', $datos);
     }
 
-    public function ajaxColonias()
+    public function ajaxTributos()
     {
-        $colonia = new ColoniaModel();
-        $builder = $colonia->obtenerColonias();
+        $zona = new ZonaModel();
+        $builder = $zona->obtenerTributos();
 
         $data = DataTable::of($builder)
             ->addNumbering('no')
-            ->setSearchableColumns(['id_colonia','colonia.nombre', 'zona.nombre'])
+            ->setSearchableColumns(['idTributo','nombre'])
             ->edit('estado', function ($row) {
                 return '<span class="badge bg-' . ($row->estado ? 'success' : 'secondary') . '">' . ($row->estado ? 'Disponible' : 'No Disponible') . '</span>';
             })
@@ -72,7 +58,7 @@ class ColoniaController extends BaseController
             });            
 
         return $data->postQuery(function($builder){
-            $builder->orderBy('id_colonia', 'asc');
+            $builder->orderBy('idTributo', 'asc');
         })->toJson(true);
     }
 }

@@ -48,6 +48,31 @@ class EmpresaModel extends Model
         return $builder;
     }
 
+
+    public function obtenerEmpresaImpuestos()
+    {
+        $builder = $this->db->table("vEmpresaImpuestos")
+        ->select("*");
+        //var_dump($builder->get()->getResult());
+        return $builder->get()->getResult("array");
+    }
+
+    // Campo 0: código 1: marca
+
+    public function filtro($valor){
+        $builder = $this->db->table("vEmpresaImpuestos")
+        ->select("*")
+        ->where("nombre_comercial", $valor);
+        return $builder->get()->getResult("array");
+    }
+    
+    public function obtenerEmpresaTotales($valor)
+    {
+        $builder = $this->db->table("vEmpresaTotales")
+        ->select("SUM(montoReportado) as montoReportado, SUM(montoFijo+montoPorcentaje) as TOTAL", false)
+        ->where("nombre_comercial", $valor);
+        return $builder->get()->getResult("array");
+
     public function obtenerEmpresaFiltrado($id)
     {
         $builder = $this->db->table("empresa")
@@ -62,5 +87,6 @@ class EmpresaModel extends Model
             ->where('empresa.id_empresa', $id);              
 
         return $builder->get()->getResultArray();
+
     }
 }

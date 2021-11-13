@@ -12,7 +12,7 @@ class ColoniaModel extends Model
     protected $returnType = 'array';
 
     protected $allowedFields = [
-        'nombre', 'zona', 'estado',
+        'nombre', 'id_zona', 'estado',
     ];
 
     public function obtenerColonias()

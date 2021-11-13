@@ -15,6 +15,11 @@
             <?php endif;?>
 
             <table class="table mt-5" id="tbl-colonia-data">
+            <div class="row my-3">
+                <div class="d-grid d-md-block">
+                    <a class="btn btn-primary float-end w-25" href="<?= base_url('/colonia/agregar')?>"><i class="bi bi-plus-circle"></i> Agregar</a>
+                </div>
+            </div>
                 <thead class="table-primary">
                     <tr>
                         <th>No.Registro</th>
